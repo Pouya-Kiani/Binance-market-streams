@@ -124,10 +124,10 @@ input:-webkit-autofill{
     -webkit-text-fill-color: inherit !important;
 }
 `,ME=la.main`
-  margin: 0;
   padding: 0;
   max-width: 500px;
   margin-inline: auto;
+  margin-block: auto;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 `,_E=la.ul`
@@ -203,4 +203,9 @@ input:-webkit-autofill{
     .price-change {
     }
   }
-`,jE=({symbol:e})=>{const[t,n]=Pe.useState(!1),r=o1(CE(e));Pe.useEffect(()=>{if(!r)return;n(!0);const u=setTimeout(()=>{n(!1)},300);return()=>{u&&clearTimeout(u)}},[r]);const i=Pe.useCallback(u=>u?u.includes("-",0)?"down":"up":void 0,[]);return Qt.jsxs(NE,{"data-animate":t,children:[Qt.jsx("div",{className:"symbol",children:r==null?void 0:r.symbol}),Qt.jsx("div",{className:"update-status",children:"Perpetual"}),Qt.jsx("div",{className:"last-price",children:r==null?void 0:r.lastPrice}),Qt.jsx("div",{className:"price-change","data-direction":i(r==null?void 0:r.priceChangePercent),children:r==null?void 0:r.priceChangePercent})]})},$E=la.div``,zE=({message:e,children:t})=>Qt.jsxs($E,{children:[Qt.jsx("h1",{className:"title",children:"Loading..."}),Qt.jsx("p",{className:"message",children:e}),t]}),DE=()=>{const e=o1(RE);return e&&(e==null?void 0:e.length)>0?Qt.jsx(_E,{children:e==null?void 0:e.slice(0,10).map(t=>Qt.jsx(jE,{symbol:t},t))}):Qt.jsx(zE,{message:"Connecting to the server"})},LE=()=>(xE(),Qt.jsx(ME,{children:Qt.jsx(DE,{})}));function FE(){return Qt.jsx(Rg,{store:Ap,children:Qt.jsx(Ig,{persistor:TE,children:Qt.jsxs(WO,{theme:AE,children:[Qt.jsx(IE,{}),Qt.jsx(LE,{})]})})})}Fc.createRoot(document.getElementById("root")).render(Qt.jsx(FE,{}));
+`,jE=({symbol:e})=>{const[t,n]=Pe.useState(!1),r=o1(CE(e));Pe.useEffect(()=>{if(!r)return;n(!0);const u=setTimeout(()=>{n(!1)},300);return()=>{u&&clearTimeout(u)}},[r]);const i=Pe.useCallback(u=>u?u.includes("-",0)?"down":"up":void 0,[]);return Qt.jsxs(NE,{"data-animate":t,children:[Qt.jsx("div",{className:"symbol",children:r==null?void 0:r.symbol}),Qt.jsx("div",{className:"update-status",children:"Perpetual"}),Qt.jsx("div",{className:"last-price",children:r==null?void 0:r.lastPrice}),Qt.jsx("div",{className:"price-change","data-direction":i(r==null?void 0:r.priceChangePercent),children:r==null?void 0:r.priceChangePercent})]})},$E=la.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`,zE=({message:e,children:t})=>Qt.jsxs($E,{children:[Qt.jsx("h1",{className:"title",children:"Loading..."}),Qt.jsx("p",{className:"message",children:e}),t]}),DE=()=>{const e=o1(RE);return e&&(e==null?void 0:e.length)>0?Qt.jsx(_E,{children:e==null?void 0:e.slice(0,10).map(t=>Qt.jsx(jE,{symbol:t},t))}):Qt.jsx(zE,{message:"Connecting to the server"})},LE=()=>(xE(),Qt.jsx(ME,{children:Qt.jsx(DE,{})}));function FE(){return Qt.jsx(Rg,{store:Ap,children:Qt.jsx(Ig,{persistor:TE,children:Qt.jsxs(WO,{theme:AE,children:[Qt.jsx(IE,{}),Qt.jsx(LE,{})]})})})}Fc.createRoot(document.getElementById("root")).render(Qt.jsx(FE,{}));
