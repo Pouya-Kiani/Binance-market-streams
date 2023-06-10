@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import store, { persistor } from './app/store';
 import { themeConfig, GlobalStyles } from './theme';
-import { PriceTable } from './pages/priceTable/PriceTable';
+import MarketPrices from './pages/MarketPrices';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <ThemeProvider theme={themeConfig}>
           <GlobalStyles />
-          <PriceTable />
+          <MarketPrices />
         </ThemeProvider>
       </PersistGate>
     </Provider>
