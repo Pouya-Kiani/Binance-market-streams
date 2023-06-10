@@ -113,23 +113,31 @@ class WebSocketManager {
     });
   }
 
-  unsubscribe(topic: string): void {
-    if (!this.websocket || this.websocket.readyState !== WebSocket.OPEN) {
-      return;
-    }
+  unsubscribe(topic: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        if (!this.websocket || this.websocket.readyState !== WebSocket.OPEN) {
+          resolve();
+        }
+        this.callbacks.delete(topic);
 
-    this.callbacks.delete(topic);
+        const request = {
+          method: 'UNSUBSCRIBE',
+          params: [topic],
+          id: 1,
+        };
 
-    const request = {
-      method: 'UNSUBSCRIBE',
-      params: [topic],
-      id: 1,
-    };
-
-    this.websocket.send(JSON.stringify(request));
+        this.websocket?.send(JSON.stringify(request));
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   close(): void {
+    if (this.callbacks.size > 0)
+      this.callbacks.forEach((_callback, topic) => this.unsubscribe(topic));
     if (this.websocket) {
       this.websocket.close();
     }
